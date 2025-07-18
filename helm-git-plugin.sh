@@ -439,7 +439,7 @@ main() {
   if [ "$cache_charts_enabled" = 1 ]; then
     helm_target_path="${_cache_folder}"
   else
-    helm_target_path="$(mktemp -d "$TMPDIR/helm-git.XXXXXX")"
+    helm_target_path="${git_root_path}"
   fi
 
   readonly helm_target_path="$helm_target_path"
@@ -495,5 +495,5 @@ main() {
     error "Error while helm_index"
 
   debug "Returning target: $helm_target_file"
-  cat "$helm_target_file"
+  cat "$helm_target_path"/*.tgz
 }
